@@ -1,3 +1,5 @@
+from flask import Flask, render_template, request
+import pandas as pd
 import os, subprocess
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -7,7 +9,7 @@ data_path = os.path.join(BASE_DIR, "data", "results.csv")
 if os.path.exists(data_path):
     df = pd.read_csv(data_path)
 else:
-    df = pd.DataFrame()
+    df = pd.DataFrame(columns=["timestamp", "source", "destination", "protocol"])
 
 if not os.path.exists("data/results.csv"):
     print("⚠️ results.csv not found — running extractor & model...")
