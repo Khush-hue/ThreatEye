@@ -24,6 +24,6 @@ def home():
     <p style='text-align:center;color:red;'>⚠️ Monitoring Encrypted Traffic for Suspicious Patterns</p>
     """, total=total, anomalies=anomalies, percent=round(percent,2))
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0',
-    port=int(os.environ.get('PORT', 5000)))
+if __name__ == "_main_":
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port, debug=False)
