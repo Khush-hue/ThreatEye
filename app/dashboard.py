@@ -1,5 +1,14 @@
 import os, subprocess
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+print("✅ Flask app starting... BASE_DIR =", BASE_DIR)
+
+data_path = os.path.join(BASE_DIR, "data", "results.csv")
+if os.path.exists(data_path):
+    df = pd.read_csv(data_path)
+else:
+    df = pd.DataFrame()
+
 if not os.path.exists("data/results.csv"):
     print("⚠️ results.csv not found — running extractor & model...")
     subprocess.run(["python3", "app/extractor.py"])
@@ -26,4 +35,5 @@ def home():
 
 if __name__ == "_main_":
     port = int(os.environ.get("PORT", 5000))
+    print("✅ Starting Flask on port", port)
     app.run(host="0.0.0.0", port=port, debug=False)
